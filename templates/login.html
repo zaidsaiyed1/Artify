@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/static/css/login.css"> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN FORM</title>
+</head>
+<body><center><div class="ww"><h1>LOGIN</h1></div></center>
+   
+    <div class="center">
+       <h1><img src="/static/img/logo7.jpg" width="200px" height="80px"></h1>
+        <form method="post" action="../loginuser/">
+            {% csrf_token %}
+    <div class="txt">
+       
+        <i class="fa fa-envelope-o"></i>
+            <input type="text" name="username" id="username" placeholder="Username">
+    
+        </div>
+    <div class="txt1">    
+        <i class="fa fa-key"></i> 
+            <input type="password" name="password" id="password" placeholder="Password" >
+            <span class="eye" onclick="myFunction()">
+            <i id="hide1" class="fa fa-eye"></i>
+            <i id="hide2" class="fa fa-eye-slash"></i></span>
+    </div> 
+    <div class="pass">
+       <a href="/templates/forgot.html">Forgot Password?</a>
+       
+    </div>
+    
+    <input type="submit" value="Login">
+    
+    <div class="sign_up">
+       Not a member? <a href="{%url 'signup'%}">SIGN UP</a>
+    </div>
+</div>
+<script>
+    function myFunction(){
+        var x= document.getElementById("password");
+        var y= document.getElementById("hide1");
+        var z= document.getElementById("hide2");
+        if(x.type === 'password'){
+            x.type= "text";
+            y.style.display = "block";
+            z.style.display="none";
+        }
+        else{
+            x.type= "password";
+            y.style.display = "none";
+            z.style.display="block";
+
+        }
+    }
+</script>
+</body>
+</html>

@@ -37,9 +37,11 @@ class Meta:
 class Customer(models.Model):
    Customer_id = models.BigAutoField(primary_key=True)
    Customer_name = models.CharField(max_length=10,null = False)
+   Customer_username = models.CharField(max_length=10,null = False)
    Contact_no = models.IntegerField(null = False)
    Customer_Email = models.EmailField(null = False)
-   Customer_idProof = models.ImageField(null = False)
+   Customer_password = models.CharField(max_length=20,null = False)
+   
 
 class Meta:
    db_table = 'Customer'
