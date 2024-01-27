@@ -7,6 +7,7 @@ urlpatterns = [
     path('login/',views.login, name='login'),
     path('signupuser/',views.signupuser, name='signupuser'),
     path('signupforAA/',views.signupforAA, name='signupforAA'),
+    path('signupforAM/',views.signupforAM, name='signupforAM'),
     path('signinpage/',views.signinpage, name='signinpage'),
     path('loginuser/',views.loginuser, name='loginuser'),
     path('test/',views.test, name='test'),
@@ -15,5 +16,8 @@ urlpatterns = [
     path('delete/',views.delete, name='delete'),
     path('destroy/<str:Customer_username>',views.destroy, name='destroy'),
     path('verification/',views.verification, name='verification'),
+    path('signupforAA/',views.signupforAA, name='signupforAA'),
+    path('signupuserforArtist/',views.signupuserforArtist, name='signupuserforArtist'),
+    path('signupuserforartgallerymanager/',views.signupuserforartgallerymanager, name='signupuserforartgallerymanager'),
 ]
 

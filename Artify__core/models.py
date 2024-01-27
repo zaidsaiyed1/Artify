@@ -30,7 +30,7 @@ class ArtGalleryManager(models.Model):
    Username = models.CharField(max_length=40,null = False)
    Email = models.EmailField(null = False)
    id_proof = models.ImageField(null = False)
-
+   password = models.CharField(max_length=25, null=False)
 class Meta:
    db_table="ArtGalleryManager"
 

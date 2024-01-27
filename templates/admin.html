@@ -84,7 +84,7 @@
          <div class="admin-box flex" >
             <img src="/static/img/logo7.jpg" width="30px" height="30px">
             <div>
-               <h4>Naseem Khan</h4>
+               <h4>artify artify</h4>
                <small>Admin</small>
             </div>
          </div>
@@ -154,8 +154,12 @@
                         <td>customer</td>
                         <td>
                            <a href="/edit/{{ customer.Customer_username }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>
-                           <a href="/destroy/{{ customer.Customer_username }}"><span class="glyphicon glyphicon-pencil" >Delete</span></a>  
-                          
+                           <a href="/destroy/{{ customer.Customer_username }}"><span class="glyphicon glyphicon-pencil" onclick="popup()" >Delete</span></a>  
+                          <script>
+                           function popup() {
+                              window.alert("Entry deleted successfully")
+                           }
+                          </script>
                         </td>
                      </tr>
                    {% endfor %}
@@ -179,8 +183,6 @@
                         <td>artist</td>
                      </tr>
                      {% endfor %}
-
-                     
                      {% for artgallerymanager in artgallerymanager %}  
                      <tr>
                         <td>{{artgallerymanager.Name}}</td>
@@ -190,8 +192,7 @@
                         <td>ArtGalleryManager</td>
                      </tr>
                      {% endfor %}
-
-                   
+                
                   </tbody>
                </table>
             </div>
@@ -208,7 +209,7 @@
                      <td class="flex">
                         <img src="/static/img/logo7.jpg" width="30px" height="30px" alt="">
                         <div>
-                           <h5>Naseem Khan</h5>
+                           <h5>artify artify</h5>
                            <small>CEO Expert</small>
                         </div>
                      </td>
@@ -223,7 +224,7 @@
                      <td class="flex">
                         <img src="/static/img/logo7.jpg" width="30px" height="30px" alt="">
                         <div>
-                           <h5>Naseem Khan</h5>
+                           <h5>artify artify</h5>
                            <small>CEO Expert</small>
                         </div>
                      </td>
@@ -238,7 +239,7 @@
                      <td class="flex">
                         <img src="/static/img/logo7.jpg" width="30px" height="30px" alt="">
                         <div>
-                           <h5>Naseem Khan</h5>
+                           <h5>artify artify</h5>
                            <small>CEO Expert</small>
                         </div>
                      </td>
@@ -253,7 +254,7 @@
                      <td class="flex">
                         <img src="/static/img/logo7.jpg" width="30px" height="30px" alt="">
                         <div>
-                           <h5>Naseem Khan</h5>
+                           <h5>artify artify</h5>
                            <small>CEO Expert</small>
                         </div>
                      </td>
@@ -268,7 +269,7 @@
                      <td class="flex">
                         <img src="/static/img/logo7.jpg" width="30px" height="30px" alt="">
                         <div>
-                           <h5>Naseem Khan</h5>
+                           <h5>artify artify</h5>
                            <small>CEO Expert</small>
                         </div>
                      </td>
@@ -283,7 +284,7 @@
                      <td class="flex">
                         <img src="/static/img/logo7.jpg" width="30px" height="30px" alt="">
                         <div>
-                           <h5>Naseem Khan</h5>
+                           <h5>artify artify</h5>
                            <small>CEO Expert</small>
                         </div>
                      </td>
@@ -298,7 +299,7 @@
                      <td class="flex">
                         <img src="/static/img/logo7.jpg" width="30px" height="30px" alt="">
                         <div>
-                           <h5>Naseem Khan</h5>
+                           <h5>artify artify</h5>
                            <small>CEO Expert</small>
                         </div>
                      </td>
