@@ -181,6 +181,10 @@
                         <td>{{artist.Artist_email}}</td>
                         <td>{{artist.Artist_contact_no}}</td>
                         <td>artist</td>
+                        <td>
+                           <a href="/editArtist/{{ artist.Artist_username }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>
+                           <a href="/destroyArtist/{{ artist.Artist_username }}"><span class="glyphicon glyphicon-pencil" onclick="popup()" >Delete</span></a>  
+                        </td>
                      </tr>
                      {% endfor %}
                      {% for artgallerymanager in artgallerymanager %}  
@@ -190,6 +194,10 @@
                         <td>{{artgallerymanager.Email}}</td>
                         <td>{{artgallerymanager.Contact_no}}</td>
                         <td>ArtGalleryManager</td>
+                        <td>
+                           <a href="/editArtGalleryManager/{{ artgallerymanager.Username }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>
+                           <a href="/destroyArtGalleryManager/{{ artgallerymanager.Username }}"><span class="glyphicon glyphicon-pencil" onclick="popup()" >Delete</span></a>  
+                        </td>
                      </tr>
                      {% endfor %}
                 

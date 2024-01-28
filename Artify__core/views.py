@@ -3,7 +3,7 @@ from . models import *
 # Create your views here.
 def admin_panel(request):
      artist = Artist.objects.all()
-     customer = Customer.objects.all()
+     customer=Customer.objects.all()
      admin=Admin.objects.all()
      artgallerymanager = ArtGalleryManager.objects.all()
      return render(request,'templates/admin.html',{'artist':artist,'customer':customer,'admin':admin,'artgallerymanager': artgallerymanager})
@@ -97,6 +97,35 @@ def signupuserforArtist(request):
      
      return redirect('login')
 
+def editArtist(request,Artist_username):
+     artist = Artist.objects.get(Artist_username=Artist_username)  
+     return render(request,'templates/editArtist.html', {'artist':artist})
+      
+def updateArtist(request, Artist_username):  
+       dataget = Artist.objects.get(Artist_username = Artist_username)
+       data = Artist.objects.filter(Artist_username=Artist_username)
+       if request.method == "POST":
+          uname = request.POST['name'];
+          uusername = request.POST['username'];
+          uemail = request.POST['email'];
+          upassword = request.POST['password'];
+          ucontact = request.POST['contact'];
+          uidproof = request.POST['id_proof']
+          dataget.Artist_name = uname
+          dataget.Artist_username = uusername
+          dataget.Artist_email = uemail
+          dataget.Artist_pass = upassword
+          dataget.Artist_contact_no = ucontact
+          dataget.Artist_idProof = uidproof
+          dataget.save();
+          
+          return redirect('/admin_panel')  
+       return render(request, 'templates/editArtist.html', {'artist': data})  
+
+def destroyArtist(request, Artist_username):
+    dataget = Artist.objects.get(Artist_username=Artist_username)
+    dataget.delete()
+    return redirect('admin_panel')
 def signupuserforartgallerymanager(request):
      if request.method == 'POST':
        Amname = request.POST['name'];
@@ -108,4 +137,34 @@ def signupuserforartgallerymanager(request):
        user = ArtGalleryManager(Name=Amname, Contact_no=Amcontact,Username = Amusername,Email=Amemail,id_proof=Amidproof,password=Ampassword);
        user.save();
      
-     return redirect('signinpage')
+     return redirect('login')
+
+def editArtGalleryManager(request,Username):
+     artgallerymanager = ArtGalleryManager.objects.get(Username=Username)  
+     return render(request,'templates/editArtgallerymanager.html', {'artgallerymanager':artgallerymanager})
+      
+def updateArtGalleryManager(request, Username):  
+       dataget = ArtGalleryManager.objects.get(Username = Username)
+       data = ArtGalleryManager.objects.filter(Username=Username)
+       if request.method == "POST":
+          uname = request.POST['name'];
+          uusername = request.POST['username'];
+          uemail = request.POST['email'];
+          upassword = request.POST['password'];
+          ucontact = request.POST['contact'];
+          uidproof = request.POST['id_proof']
+          dataget.Name = uname
+          dataget.Username = uusername
+          dataget.Email = uemail
+          dataget.password = upassword
+          dataget.Contact_no = ucontact
+          dataget.id_proof = uidproof
+          dataget.save();
+          
+          return redirect('/admin_panel')  
+       return render(request, 'templates/editArtgallerymanager.html', {'artgallerymanager':data})  
+
+def destroyArtGalleryManager(request, Username):
+    dataget = ArtGalleryManager.objects.get(Username=Username)
+    dataget.delete()
+    return redirect('admin_panel')
