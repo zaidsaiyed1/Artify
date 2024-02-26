@@ -1,0 +1,19 @@
+
+.all {
+    
+    float:right;
+}
+.all input{
+    border: 3px solid black;
+    font-size: 22px;
+    cursor: pointer;
+}
+.all{
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+
+
+

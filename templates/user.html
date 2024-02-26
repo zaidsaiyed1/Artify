@@ -8,6 +8,20 @@
    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
    <!-- CSS File Link -->
    <link rel="stylesheet" href="/static/css/admin_style.css">
+   <style>
+      .logo-img img {
+             width: 70px;
+             height: 50px;
+             position: relative;
+             top: 1.2rem;
+             right: 2rem;
+            } 
+            .namec {
+               position: relative;
+               left: 3rem;
+               bottom: 1.1rem;
+            }
+            </style>
             </head>
           
 <body>
@@ -16,7 +30,7 @@
       <div class="logo">
          <h2>
             <div class="logo-img">
-               <h3>Artify</h3>
+               <img src="/static/img/logo7.jpg"><h3 class="namec">Artify</h3>
             </div>            
          </h2>
       </div>
@@ -25,23 +39,24 @@
          <ul>
             <li>
                <i class="uil uil-dashboard"></i>
-               <span>Dashboard</span>
+               <a href="/admin_panel/"><span>Dashboard</span></a>
             </li>
-            <li>
-               <i class="uil uil-clipboard-notes"></i>
-              <a href="/userpageforadmin/"><span>User</span></a>
-            </li>
-            <li>
-               <i class="uil uil-chart-bar"></i>
-               <a href="/eventspageforadmin/"><span>Events</span></a>
-            </li>
-            <li>
-               <i class="uil uil-calendar-alt"></i>
-               <a href="/products/"><span>Products</span></a>
-            </li>
+           
+               <li>
+                  <i class="uil uil-clipboard-notes"></i>
+                 <a href="/userpageforadmin/"><span>User</span></a>
+               </li>
+               <li>
+                  <i class="uil uil-chart-bar"></i>
+                  <a href="/eventspageforadmin/"><span>Events</span></a>
+               </li>
+               <li>
+                  <i class="uil uil-calendar-alt"></i>
+                  <a href="/products/"><span>Products</span></a>
+               </li> 
             <li>
                <i class="uil uil-shopping-bag"></i>
-               <a href="/orderpageforadmin/"><span>Orders</span></a>
+               <span>Orders</span>
             </li>
             <li>
                <i class="uil uil-user-circle"></i>
@@ -61,51 +76,27 @@
             <i class="uil uil-bars" id="menu-icon"></i>
             Dashboard
          </h2>
-         <button><a href="/signup/"class="link"> Add Customer </a></button>
-         <button><a href="/signupforAA/" class="link"> Add Artist </a></button>
-         <button><a href="/signupforAM/" class="link"> Add ArtGalleryManager </a></button>
-        
+
+         <div class="search-box">
+            <i class="uil uil-search"></i>
+            <input type="text" placeholder="Search Here...">
+         </div>
+
          <div class="admin-box flex" >
             <img src="/static/img/logo7.jpg" width="30px" height="30px">
             <div>
-               <h4>{{admin.Admin_username}}</h4>
+               <h4>artify artify</h4>
                <small>Admin</small>
             </div>
          </div>
       </header>
 
       <main>
-         <div class="cards">
-            <div class="single-card">
-               <div>
-                  <span>EARNINGS (MONTHLY)</span>
-                  <h2>$40,000</h2>
-               </div>
-               <i class="uil uil-calender"></i>
-            </div>
-            <div class="single-card">
-               <div>
-                  <span>Total User Register</span>
-                  <h2>{{userTotal}}</h2>
-               </div>
-               <i class="uil uil-dollar-sign-alt"></i>
-            </div>
-            <div class="single-card">
-               <div>
-                  <span>Total Products Register</span>
-                  <h2>{{productTotal}}</h2>
-               </div>
-               <i class="uil uil-chart-bar"></i>
-            </div>
-            
-         </div>
-
-
+        
          <div class="wrapper flex">
             <div class="projects">
                <div class="card-header flex">
                   <h3>Recents User's</h3>
-                  <button><a href="/userpageforadmin/"> See all > </a><i class="link"></i></button>
                </div>
 
                <table>
@@ -123,7 +114,7 @@
                   </thead>
 
                   <tbody>
-                   
+                   {% for customer in customer %}  
                      <tr>
                         <td>{{customer.Customer_name}}</td>
                         <td>{{customer.Customer_username}}</td>
@@ -140,7 +131,9 @@
                           </script>
                         </td>
                      </tr>
-                   
+                   {% endfor %}
+
+                     {% for admin in admin %}  
                       <tr>
                          <td>{{admin.Admin_name}}</td>
                          <td>{{admin.Admin_username}}</td>
@@ -148,8 +141,9 @@
                          <td>{{admin.Contact_no}}</td>
                          <td>admin</td>
                       </tr>
-                     
-                 
+                      {% endfor %}
+
+                     {% for artist in artist %}  
                      <tr>
                         <td>{{artist.Artist_name}}</td>
                         <td>{{artist.Artist_username}}</td>
@@ -161,8 +155,8 @@
                            <a href="/destroyArtist/{{ artist.Artist_username }}"><span class="glyphicon glyphicon-pencil" onclick="popup()" >Delete</span></a>  
                         </td>
                      </tr>
-                     
-                     
+                     {% endfor %}
+                     {% for artgallerymanager in artgallerymanager %}  
                      <tr>
                         <td>{{artgallerymanager.Name}}</td>
                         <td>{{artgallerymanager.Username}}</td>
@@ -174,89 +168,12 @@
                            <a href="/destroyArtGalleryManager/{{ artgallerymanager.Username }}"><span class="glyphicon glyphicon-pencil" onclick="popup()" >Delete</span></a>  
                         </td>
                      </tr>
-                     
+                     {% endfor %}
                 
                   </tbody>
                </table>
-            </div>
-
-            <div class="customers">
-               <div class="card-header flex">
-                  <h3>New Products</h3>
-                  <button>See all <i class="link"></i></button>
-               </div>
-
-               <table>
-                  <thead>
-                     <th>
-                        <tr>
-                           <td>Name</td>
-                           <td>Decription</td>
-                           <td>Price</td>
-                           <td>Artist_id</td>
-                           <td>Picture</td>
-                           <td>Action</td>
-                        </tr>
-                     </th>
-                  </thead>
-                  <tr class="flex">
-                     {% for product in product %}  
-                     <tr>
-                        <td>{{product.Name}}</td>
-                        <td>{{product.Description}}</td>
-                        <td>{{product.Price}}</td>
-                        <td>{{product.Artist_id}}</td>
-                        {% if product.Picture %}
-                        <td>
-                       <img src="{{product.Picture.url}}" width="50px" height="50px" alt="">
-                       </td>
-                       {% endif %}
-                       <td>
-                        <a href="/editProduct/{{ product.Product_id }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>
-                       <a href="/destroy/{{ product.Product_id }}"><span class="glyphicon glyphicon-pencil" onclick="popup()" >Delete</span></a>  
-                      
-                       </td>
-                       
-                     </tr>
-                     {% endfor %}
+            </div>  
                </table>
-               <div class="customers">
-                  <div class="card-header flex">
-                     <h3>New Events</h3>
-                     <button>See all <i class="uil uil-angle-right"></i></button>
-                  </div>
-   
-                  <table>
-                     <thead>
-                        <th>
-                           <tr>
-                              <td>Name</td>
-                              <td>Events_Time</td>
-                              <td>Events_Date</td>
-                              <td>Event_capacity</td>
-                              <td>Event_venue</td>
-                              <td>Action</td>
-                           </tr>
-                        </th>
-                     </thead>
-                     <tr class="flex">
-                          
-                        <tr>
-                           <td>{{event.Event_name}}</td>
-                           <td>{{event.Event_time}}</td>
-                           <td>{{event.Event_date}}</td>
-                           <td>{{event.Event_capacity}}</td>
-                           <td>{{event.Event_venue}}</td>
-                          <td>
-                           <a href="/editProduct/{{ product.Product_id }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>
-                          <a href="/destroy/{{ product.Product_id }}"><span class="glyphicon glyphicon-pencil" onclick="popup()" >Delete</span></a>  
-                         
-                          </td>
-                          
-                        </tr>
-                        
-                     </table>
-              
             </div>
          </div>
       </main>

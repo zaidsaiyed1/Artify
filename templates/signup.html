@@ -1,40 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="stylesheet" href="/static/css/signup.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <link rel="stylesheet" href="/static/css/signup.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+
+        margin: 0;
+        padding: 0;
+        background-image: url("/static/img/education-online-books.png");
+      }
+      .center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400px;
+        background: white;
+        border-radius: 25px;
+        padding-right: -30px;
+      }
+    </style>
     <title>SignUp</title>
-</head>
-<body>
-    
-    <div class="center"><h1><img src="/static/img/logo7.jpg" width="200px" height="80px"></h1>
-        <form method="post" action="../signupuser/">
-            {% csrf_token %}
+  </head>
+  <body>
+    <div class="center">
+      <h1><img src="/static/img/logo7.jpg" width="200px" height="80px" /></h1>
+      <form method="post" action="../signupuser/">
+        {% csrf_token %}
         <div class="name">
-            <input type="text" placeholder="Enter Full Name" name='name'>
+          <input type="text" placeholder="Enter Full Name" name="name" />
         </div>
         <div class="username">
-            <input type="text" placeholder="Username" name='username'>
-          </div>  
-          <div class="email">
-            <input type="emil" name="email" id="email" placeholder="Enter Your Email">
-           </div>
-           <div class="passw">
-            <input type="password" name="password" id="password" placeholder="Enter Your Passwors">     
+          <input type="text" placeholder="Username" name="username" />
         </div>
-            <div class="cont">
-                <input type="tel" name="contact" id="contact" placeholder="Contact_no">
-            </div>
-             <div class="login">
-               Already a member? <a href="{%url 'login'%}">Log In</a></div>
-               
-               <div class="signin">
-                <center> <input type="submit" value="signin"></center>
-                  
-            </div>
+        <div class="email">
+          <input
+            type="emil"
+            name="email"
+            id="email"
+            placeholder="Enter Your Email"
+          />
+        </div>
+        <div class="passw">
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Enter Your Passwors"
+          />
+        </div>
+        <div class="cont">
+          <input
+            type="tel"
+            name="contact"
+            id="contact"
+            placeholder="Contact_no"
+          />
+        </div>
+        <div class="login">
+          Already a member? <a href="{%url 'login'%}">Log In</a>
+        </div>
 
-            </form>
+        <div class="signin">
+          <input type="submit" value="signin" />
         </div>
-</body>
+      </form>
+    </div>
+  </body>
 </html>

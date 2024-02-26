@@ -17,7 +17,7 @@ class Artist(models.Model):
    Artist_username = models.CharField(max_length=40,null=False)
    Artist_pass = models.TextField(max_length=25, null=False)
    Artist_email = models.EmailField(null=False)
-   Artist_idProof = models.ImageField(null=False)
+   Artist_idProof = models.ImageField(upload_to="img/%y",null=False)
    Artist_contact_no = models.IntegerField(null=False)
 
 class Meta:
@@ -48,7 +48,7 @@ class Meta:
 
 class Event(models.Model):
    Event_id = models.BigAutoField(primary_key=True)
-   Event_name = models.CharField(max_length=10,null = False)
+   Event_name = models.CharField(max_length=50,null = False)
    Event_time = models.TimeField(null = False)
    Event_date = models.DateField(null = False)
    Event_venue = models.CharField(max_length=30,null = False)
@@ -60,11 +60,11 @@ class Meta:
 class Product(models.Model):
    Product_id = models.BigAutoField(primary_key=True)
    Name = models.CharField(max_length=30,null = False)
-   Description = models.CharField(max_length=50,null = False)
+   Description = models.CharField(max_length=100,null = False)
    Weight = models.FloatField(max_length=10,null = False)
    Price = models.IntegerField(null = False)
    Artist_id = models.ForeignKey(Artist,on_delete=models.CASCADE)
-   Picture = models.ImageField(null = False)
+   Picture = models.ImageField(upload_to="img/%y",null = False)
 
 class Meta:
    db_table='Product'

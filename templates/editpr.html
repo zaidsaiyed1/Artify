@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/static/css/editpr.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRODUCT FORM</title>
+</head>
+<body>
+    
+    <form method="post" action="/updateProduct/{{product.Product_id}}" >
+      {% csrf_token %}  
+   <div class="all">
+    <h1>Edit Product</h1>
+        NAME<br>
+        <input type="text" name="name" id="name" value="{{product.Name}}"><br><br>
+        DESCRIPTION<br>
+        <input type="address" name="description" id="description"  value="{{product.Description}}"><br><br>
+        PRODUCT_WEIGHT<br>
+        <input type="number" name="weight" id="weight"  value="{{product.Weight}}"><br><br>
+        <div class="pic">  
+            PICTURE<br>  
+        <input type="file" name="picture" id="file">
+        </div><br>
+        PRICE<br>
+        <input type="number" name="price" id="price" value="{{product.Price}}">
+        </div>
+        {% if product.Picture %}  
+        <img src="{{product.Picture.url}}" width="880px" height="730px">
+        {% endif %}
+        <div class="submit">
+         <a href="/updateProduct/{{product.Product_id}}"><input type="submit" name="UPDATE" value="UPDATE"></a>
+        </div>
+    </form>
+</body>
+</html>

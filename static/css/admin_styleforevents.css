@@ -72,7 +72,7 @@
 }
 
 .flex{
-  display: flex;
+  align-content: normal;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -346,21 +346,3 @@ thead :is(tr,td,th){
 .toggleContent{
   margin-left: 65px;
 }
-
-.link{
-  display: relative;
-align-items: center;   
-color: #fff;
-}
-.logo-img img {
-  width: 70px;
-  height: 50px;
-  position: relative;
-  top: 1.2rem;
-  right: 2rem;
- } 
- .namec {
-    position: relative;
-    left: 3rem;
-    bottom: 1.1rem;
- }

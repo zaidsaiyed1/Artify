@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Admin Dashboard - WebTech Gyan</title>
+
+   <!-- iconscout cdn path -->
+   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+   <!-- CSS File Link -->
+   <link rel="stylesheet" href="/static/css/artist_panel_style.css">
+</head>
+<body>
+   <div class="sidebar" id="sidebar">
+      <div class="logo">
+         <h2>
+            <i class="uil uil-apple-alt"></i>
+            Artify
+         </h2>
+      </div>
+
+      <div class="sidebar-menu">
+         <ul>
+            <li>
+               <i class="uil uil-dashboard"></i>
+               <span>Manage art</span>
+            </li>
+            <li>
+               <i class="uil uil-clipboard-notes"></i>
+               <span>Notification</span>
+            </li>
+            <li>
+               <i class="uil uil-chart-bar"></i>
+               <span>Comunicate with manager</span>
+            </li>
+            <li>
+               <i class="uil uil-calendar-alt"></i>
+               <span>Block slots</span>
+            </li>
+            <li>
+               <i class="uil uil-shopping-bag"></i>
+               <span>Manage histroy and order</span>
+            </li>
+            <li>
+               <i class="uil uil-clipboard-notes"></i>
+               <span>Manage payment</span>
+            </li>
+            <li>
+               <i class="uil uil-user-circle"></i>
+               <span>manage stock</span>
+            </li>
+            <li>
+               <i class="uil uil-signin"></i>
+               <span>Logout</span>
+            </li>
+         </ul>
+      </div>
+   </div>
+
+   <div class="main-content" id="main-content">
+      <header class="flex">
+         <h2>
+            <i class="uil uil-bars" id="menu-icon"></i>
+            Dashboard
+         </h2>
+
+         <div class="search-box">
+            <i class="uil uil-search"></i>
+            <input type="text" placeholder="Search Here...">
+         </div>
+
+         <div class="admin-box flex" >
+            <img src="/static/img/logo7.jpg" width="30px" height="30px">
+            <div>
+               <h4>{{artist.Artist_username}}</h4>
+               <small>Artist</small>
+            </div>
+         </div>
+      </header>
+
+      <main>
+          <div class="customers">
+            <div class="card-header flex">
+               <h3>Your Products </h3>
+               <button><a href="/productsListPageForArtist/{{artist.Artist_id}}">See all </a><i class="link"></i></button>
+            </div>
+
+            <table>
+               <thead>
+                  <th>
+                     <tr>
+                        <td>Name</td>
+                        <td>Decription</td>
+                        <td>Price</td>
+                        <td>Picture</td>
+                        <td>Action</td>
+                     </tr>
+                  </th>
+               </thead>
+               <tr class="flex">
+                  {% for product in product %}  
+                  <tr>
+                     <td>{{product.Name}}</td>
+                     <td>{{product.Description}}</td>
+                     <td>{{product.Price}}</td>
+                     {% if product.Picture %}
+                     <td>
+                    <img src="{{product.Picture.url}}" width="50px" height="50px" alt="">
+                    </td>
+                    {% endif %}
+                    <td>
+                     <a href="/editProduct/{{ product.Product_id }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>
+                    <a href="/destroy/{{ product.Product_id }}"><span class="glyphicon glyphicon-pencil" onclick="popup()" >Delete</span></a>  
+                   
+                    </td>
+                    
+                  </tr>
+                  {% endfor %}
+            </table>
+      </main>
+   </div>
+
+            <div class="customers">
+               <div class="card-header flex">
+                  <h3>New Customers</h3>
+                  <button>See all <i class="uil uil-angle-right"></i></button>
+               </div>
+
+               <table>
+                  
+                  <tr class="flex">
+                     <td class="flex">
+                        <img src="images/user.jpeg" width="30px" height="30px" alt="">
+                        <div>
+                           <h5>Naseem Khan</h5>
+                           <small>CEO Expert</small>
+                        </div>
+                     </td>
+
+                     <td>
+                        <i class="uil uil-user-circle"></i>
+                        <i class="uil uil-calender"></i>
+                        <i class="uil uil-phone-alt"></i>
+                     </td>
+                  </tr>
+                  <tr class="flex">
+                     <td class="flex">
+                        <img src="images/user.jpeg" width="30px" height="30px" alt="">
+                        <div>
+                           <h5>Naseem Khan</h5>
+                           <small>CEO Expert</small>
+                        </div>
+                     </td>
+
+                     <td>
+                        <i class="uil uil-user-circle"></i>
+                        <i class="uil uil-calender"></i>
+                        <i class="uil uil-phone-alt"></i>
+                     </td>
+                  </tr>
+                  <tr class="flex">
+                     <td class="flex">
+                        <img src="images/user.jpeg" width="30px" height="30px" alt="">
+                        <div>
+                           <h5>Naseem Khan</h5>
+                           <small>CEO Expert</small>
+                        </div>
+                     </td>
+
+                     <td>
+                        <i class="uil uil-user-circle"></i>
+                        <i class="uil uil-calender"></i>
+                        <i class="uil uil-phone-alt"></i>
+                     </td>
+                  </tr>
+                  <tr class="flex">
+                     <td class="flex">
+                        <img src="images/user.jpeg" width="30px" height="30px" alt="">
+                        <div>
+                           <h5>Naseem Khan</h5>
+                           <small>CEO Expert</small>
+                        </div>
+                     </td>
+
+                     <td>
+                        <i class="uil uil-user-circle"></i>
+                        <i class="uil uil-calender"></i>
+                        <i class="uil uil-phone-alt"></i>
+                     </td>
+                  </tr>
+                  <tr class="flex">
+                     <td class="flex">
+                        <img src="images/user.jpeg" width="30px" height="30px" alt="">
+                        <div>
+                           <h5>Naseem Khan</h5>
+                           <small>CEO Expert</small>
+                        </div>
+                     </td>
+
+                     <td>
+                        <i class="uil uil-user-circle"></i>
+                        <i class="uil uil-calender"></i>
+                        <i class="uil uil-phone-alt"></i>
+                     </td>
+                  </tr>
+                  <tr class="flex">
+                     <td class="flex">
+                        <img src="images/user.jpeg" width="30px" height="30px" alt="">
+                        <div>
+                           <h5>Naseem Khan</h5>
+                           <small>CEO Expert</small>
+                        </div>
+                     </td>
+
+                     <td>
+                        <i class="uil uil-user-circle"></i>
+                        <i class="uil uil-calender"></i>
+                        <i class="uil uil-phone-alt"></i>
+                     </td>
+                  </tr>
+                  <tr class="flex">
+                     <td class="flex">
+                        <img src="images/user.jpeg" width="30px" height="30px" alt="">
+                        <div>
+                           <h5>Naseem Khan</h5>
+                           <small>CEO Expert</small>
+                        </div>
+                     </td>
+
+                     <td>
+                        <i class="uil uil-user-circle"></i>
+                        <i class="uil uil-calender"></i>
+                        <i class="uil uil-phone-alt"></i>
+                     </td>
+                  </tr>
+               </table>
+            </div>
+         </div>
+      </main>
+   </div>
+
+   <script>
+      let sideBar = document.getElementById('sidebar');
+      let menuIcon = document.getElementById('menu-icon');
+      let mainContent = document.getElementById('main-content');
+
+      menuIcon.onclick = () => {
+         sideBar.classList.toggle('toggleMenu');
+         mainContent.classList.toggle('toggleContent');
+      }
+   </script>
+</body>
+</html>
