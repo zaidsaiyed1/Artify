@@ -25,12 +25,14 @@ background: none;
 outline:none;
 cursor: pointer;
 
+
 }
 form .username{
     position:relative;
-    border-bottom: 2px solid white;
+    border-bottom: 1px solid black;
     margin:20px 0;
     cursor: pointer;
+    text-decoration: underline;
     
 }
 .username input{
@@ -42,7 +44,7 @@ form .username{
     background: none;
     outline:none;
     cursor: pointer;
-    
+    text-decoration: underline;
     }
     form .email{
         position:relative;

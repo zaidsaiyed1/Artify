@@ -44,12 +44,12 @@ class loginAPIview(APIView):
           
 
 def send_mail_to_verify(request,semail):
-     no = randint(1000,9999)
-     subject = "Email verification for your account"
-     message = "Your otp is "+ str(no)
-     from_email = settings.EMAIL_HOST_USER
-     recipient_list = [semail]
-     send_mail(subject=subject,message=message,from_email=from_email,recipient_list=recipient_list)
+      no = randint(1000,9999)
+      subject = "Email verification for your account"
+      message = "Your otp is "+ str(no)
+      from_email = settings.EMAIL_HOST_USER
+      recipient_list = [semail]
+      send_mail(subject=subject,message=message,from_email=from_email,recipient_list=recipient_list)
 
 def send_mail_to_client(request,semail):
               subject = "Congratulation ! for signup into Artify"
@@ -59,7 +59,14 @@ def send_mail_to_client(request,semail):
               send_mail(subject=subject,message=message,from_email=from_email,recipient_list=recipient_list)
               send_mail_to_verify(request,semail)
 
-# Create your views here.
+def index(request):
+     productindex = Product.objects.all()
+     return render(request,'templates/index.html',{'productindex':productindex})
+
+def indexcustomer(request,Customer_username):
+     customer = Customer.objects.get(Customer_username=Customer_username)
+     return render(request,'templates/indexcustomer.html',{'customer':customer})
+
 def admin_panel(request,Admin_username):
      admin = Admin.objects.get(Admin_username=Admin_username)
      artist = Artist.objects.last()
@@ -79,8 +86,7 @@ def admin_panel(request,Admin_username):
 def signup(request):
      return render(request,'templates/signup.html',{})
 
-def index(request):
-     return render(request,'templates/index.html',{})
+
 def signupforAA(request):
      return render(request,'templates/signupforAA.html',{})
 
@@ -113,18 +119,34 @@ def signupuser(request):
        spassword = request.POST['password'];
        scontact = request.POST['contact'];
        user = Customer(Customer_name=sname,Customer_username = susername, Contact_no=scontact,Customer_Email=semail,Customer_password=spassword);
-       user.save();
-       send_mail_to_client(request,semail)
        
+       if Customer.objects.filter(Customer_name=sname,Customer_username=susername,Customer_Email=semail,Contact_no=scontact).exists():
+            messages.error(request,'The user is already register with the same detaiils')
+            return redirect('signup')
+       elif Customer.objects.filter(Customer_name=sname).exists():
+            messages.error(request,'Name is already taken!')
+            return redirect('signup')
+       elif Customer.objects.filter(Customer_Email=semail).exists():
+            messages.error(request,'Email is already register!')
+            return redirect('signup')
+       elif  Customer.objects.filter(Customer_username=susername).exists():
+            messages.error(request,'The username is already taken!')
+            return redirect('signup')
+       else:
+        user.save();
+        send_mail_to_client(request,semail)
+        messages.success(request,'Your account has been created!')
+        #return redirect('signup')
        #authenticate(request,username=susername,password=spassword,email=semail)
-     return redirect('login')
+     return indexcustomer(request,susername)
  
 def loginuser(request):
+     cust = False
      if request.method == 'POST': 
       lusername = request.POST['username']
       lpassword = request.POST['password']
       if Customer.objects.filter(Customer_username=lusername, Customer_password=lpassword).exists():     
-        return redirect('index')
+         return indexcustomer(request,lusername)
       elif Artist.objects.filter(Artist_username=lusername, Artist_pass=lpassword).exists():
          return artist_panel(request,Artist_username=lusername)
       elif ArtGalleryManager.objects.filter(Username=lusername,password=lpassword).exists():
@@ -133,7 +155,7 @@ def loginuser(request):
            return admin_panel(request,Admin_username=lusername)  
       else:
           return redirect('login')
-      
+ 
 def edit(request,Customer_username):
      customer = Customer.objects.get(Customer_username=Customer_username)  
      return render(request,'templates/edit.html', {'Customer':customer})
@@ -154,13 +176,13 @@ def update(request, Customer_username):
           dataget.Contact_no = ucontact
           dataget.save()
           
-          return redirect('/admin_panel')  
+          return redirect('login')  
        return render(request, 'templates/edit.html', {'Customer': data})  
 
 def destroy(request, Customer_username):
     dataget = Customer.objects.get(Customer_username=Customer_username)
     dataget.delete()
-    return redirect('admin_panel')
+    return redirect('login')
 
 def artist_panel(request,Artist_username):
       artist = Artist.objects.get(Artist_username=Artist_username)
@@ -202,13 +224,13 @@ def updateArtist(request, Artist_username):
           dataget.Artist_idProof = uidproof
           dataget.save();
           
-          return redirect('/admin_panel')  
+          return artist_panel(request,uusername) 
        return render(request, 'templates/editArtist.html', {'artist': data})  
 
 def destroyArtist(request, Artist_username):
     dataget = Artist.objects.get(Artist_username=Artist_username)
     dataget.delete()
-    return redirect('admin_panel')
+    return redirect('login')
 def signupuserforartgallerymanager(request):
      if request.method == 'POST':
        Amname = request.POST['name'];
@@ -216,10 +238,9 @@ def signupuserforartgallerymanager(request):
        Amemail = request.POST['email'];
        Ampassword = request.POST['password'];
        Amcontact = request.POST['contact'];
-       Amidproof = request.POST['id_proof']
+       Amidproof = request.POST['id_proof'];
        user = ArtGalleryManager(Name=Amname, Contact_no=Amcontact,Username = Amusername,Email=Amemail,id_proof=Amidproof,password=Ampassword);
-       user.save();
-     
+       user.save(); 
      return redirect('login')
 
 def editArtGalleryManager(request,Username):
@@ -252,10 +273,29 @@ def destroyArtGalleryManager(request, Username):
     dataget.delete()
     return redirect('admin_panel')
 
-def products(request):
+def productsPageforAdmin(request):
      products = Product.objects.all()
      return render(request,'templates/product.html',{'products':products})
 
+def AddProduct(request,Artist_id):
+     artist = Artist.objects.get(Artist_id=Artist_id)
+     return render(request,'templates/Addproduct.html',{'artist':artist})
+
+def addProduct(request,Artist_id):
+      artist = Artist.objects.get(Artist_id=Artist_id)
+      if request.method == "POST":
+       pname = request.POST['name'];
+       pdescription = request.POST['description'];
+       product_weight = request.POST['weight'];
+       #pArtist_id = request.POST['Artist_id'];
+       #if len(request.FILES) !=0:
+       ppicture = request.FILES['picture'];
+       pprice = request.POST['price'];
+       #Artist_id = request.POST['Artist_id'];
+       user = Product(Name=pname,Description=pdescription,Weight=product_weight,Price=pprice,Artist_id=artist,Picture=ppicture)     
+       user.save();
+       return artist_panel(request,artist.Artist_username)
+       
 def editProduct(request,Product_id):
      product = Product.objects.get(Product_id=Product_id)
      return render(request,'templates/editpr.html',{'product':product})
@@ -271,7 +311,7 @@ def updateProduct(request,Product_id):
           if len(request.FILES) !=0:
            if len(dataget.Picture)>0:
                 os.remove(dataget.Picture.path)
-           ppicture = request.FILES['picture'];
+                ppicture = request.FILES['picture'];
           pprice = request.POST['price'];
           dataget.Name = pname
           dataget.Description = pdescription
@@ -282,8 +322,13 @@ def updateProduct(request,Product_id):
            dataget.Picture = ppicture
           dataget.Price = pprice
           dataget.save();
-          return redirect('/admin_panel')  
+          return redirect('login')  
        return render(request, 'templates/editpr.html', {'product':data}) 
+
+def destroyProduct(request,Product_id):
+     productdestroy = Product.objects.get(Product_id=Product_id)
+     productdestroy.delete()
+     return redirect('login')
 
 def eventspageforadmin(request):
      events = Event.objects.all()
@@ -294,9 +339,57 @@ def orderpageforadmin(request):
      return render(request,'templates/order.html',{'order':order})
 
 def displayproducts(request):
-     return render(request,'templates/productList.html',{})
+     product = Product.objects.all()
+     return render(request,'templates/productList.html',{'product':product})
 
 def productsListPageForArtist(request,Artist_id):
     artist = Artist.objects.get(Artist_id=Artist_id)
     products = Product.objects.filter(Artist_id=Artist_id)
     return render(request,'templates/productsPageForArtist.html',{'products':products,'artist':artist})
+
+def AddCustomerForAdmin(request):
+     return render(request,'templates/Addcustomer.html',{})
+
+def AddArtistForAdmin(request):
+     return render(request,'templates/Addartist.html',{})
+
+def AddArtgallerymanagerForAdmin(request):
+     return render(request,'templates/Addmanager.html',{})
+
+def cart(request):
+     return render(request,'templates/cart.html',{})
+
+def notificationforartist(request):
+     return render(request,'templates/notification.html',{})
+
+def comunicatewithmanagerforartist(request):
+     return render(request,'templates/comunicatewithmanager.html',{})
+
+def bookslotsforartist(request):
+     return render(request,'templates/blockslots.html',{}) 
+def managehistoryforartist(request):
+     return render(request,'templates/managerhistory.html',{})
+
+def managestockforartist(request):
+     return render(request,'templates/managestock.html',{})
+
+def managepaymentforartist(request):
+     return render(request,'templates/managepayment.html',{})
+
+def artistprofile(request,Artist_username):
+     artist = Artist.objects.get(Artist_username=Artist_username)
+     return render(request,'templates/profile.html',{'artist':artist})
+
+def customerprofile(request,Customer_username):
+     customer = Customer.objects.get(Customer_username=Customer_username)
+     return render(request,'templates/profile2.html',{'customer':customer})
+
+def adminprofile(request,Admin_username):
+     admin = Admin.objects.get(Admin_username=Admin_username)
+     return render(request,'templates/profileadmin.html',{'admin':admin})
+
+def order(request,Customer_username):
+    customer = Customer.objects.get(Customer_username=Customer_username)
+    product = Product.objects.get(Product_id=customer)
+    order = Order.objects.filter(Customer_id = customer,Product_id=product)
+    return render(request,'templates/cart.html',{'Order':order})

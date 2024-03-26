@@ -16,12 +16,23 @@
     padding: 0;
     background-image: url("/static/img/education-online-books.png");
   }
+  .message {
+       color: green;
+       background: white;
+        height: auto;
+        width: auto;
+        text-align: center;
+
+      }
     </style>
 </head>
 <body><center><div class="ww"><h1>LOGIN</h1></div></center>
    
     <div class="center">
        <h1><img src="/static/img/logo7.jpg" width="200px" height="80px"></h1>
+       <div class="message">
+        {% include 'alerts.html' %}
+      </div> 
         <form method="post" action="../loginuser/">
             {% csrf_token %}
     <div class="txt">

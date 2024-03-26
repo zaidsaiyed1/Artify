@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/static/css/Addmanager.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CUSTOMER PAGE</title>
+</head>
+<body>
+    <form action="../signupuserforartgallerymanager/" method="post">
+        {% csrf_token %}
+   <div class="all">
+    <h1>Add ArtGalleryManager</h1>
+        MANAGER_NAME<br>
+        <input type="text" name="name" id="name"><br><br>
+        MANAGER_USERNAME<br>  
+        <input type="text" name="username" id="uname" required="Cappital 1 letter, 1 symbole, 1 Numeric"><br>
+        <br>
+        MANAGER_PASS<br>
+        <input type="number" name="password" id="password"><br><br>
+        MANAGER_EMAIL<br>
+        <input type="email" name="email" id="email"><br><br>
+        MANAGER_CONTACT_NO<br>
+        <input type="number" name="contact" id="contact" maxlength="10"><br><br>
+        MANAGER_IDPROOF<br>
+        <input type="file" name="id_proof" id="id_proof">
+        </div>
+        <img src="logoo.jpg" width="850px" height="730px">
+        <div class="submit">
+         <input type="submit" name="UPDATE" value="UPDATE">
+        </div>
+    </form>
+</body>
+</html>   

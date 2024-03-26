@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/static/css/editpr.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRODUCT FORM</title>
+</head>
+<body>
+    
+    <form method="post" action="/addProduct/{{artist.Artist_id}}" enctype="multipart/form-data">
+      {% csrf_token %}  
+   <div class="all">
+    <h1>Add Product</h1>
+        NAME<br>
+        <input type="text" name="name" id="name"><br><br>
+        DESCRIPTION<br>
+        <input type="address" name="description" id="description"><br><br>
+        PRODUCT_WEIGHT<br>
+        <input type="number" name="weight" id="weight"><br><br>
+        <div class="pic">  
+            PICTURE<br>  
+        <input type="file" name="picture" id="file">
+        </div><br>
+        PRICE<br>
+        <input type="number" name="price" id="price"><br>
+        Artist_id<br>
+        <input type="number" name="Artist_id" id="Artist_id" value="{{artist.Artist_id}}">
+        </div>
+        <img src="/static/img/logo7.jpg" width="880px" height="730px">
+        <div class="submit">
+         <input type="submit" name="Add Product" value="Add Product">
+        </div>
+    </form>
+</body>
+</html>

@@ -32,14 +32,14 @@
               backface-visibility: hidden;
               transition: 1s;
             }
-            .NEWArr{
-               
-                text-align:center;
-                display: grid;
+            .message {
+       color: green;
+       background: white;
+        height: auto;
+        width: auto;
+        text-align: center;
 
-
-            }
-            
+      }
             
         </style>
 
@@ -80,11 +80,11 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link click-scroll" href="#section_3">About</a>
+                                <a class="nav-link click-scroll" href="#section_3">Author</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link click-scroll" href="#section_4">Art Piece</a>
+                                <a class="nav-link click-scroll" href="#section_4">Reviews</a>
                             </li>
 
                             <li class="nav-item">
@@ -95,13 +95,17 @@
                         <div class="d-none d-lg-block">
                     <a href="#" class="btn custom-btn custom-border-btn btn-naira btn-inverted">
                         <i class="btn-icon bi-cloud-download"></i>
-                        <a href="/login/"><span>  Login  </span>  </a><!-- duplicated above one for mobile-->
+                        <a href="/customerprofile/{{customer.Customer_username}}"><span>Account</span></a><!-- duplicated above one for mobile-->
                     </a>
                 </div>
                     </div>
                 </div>
-            </nav>
-
+                 </nav>
+                 
+                <div class="message">
+                    {% include 'alerts.html' %}
+                  </div> 
+           
 
             <section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
                 <div class="container">
@@ -113,7 +117,7 @@
 
                             <h1 class="text-white mb-4">Platforms for artists</h1>
 
-                            <a href="/signup/" class="btn custom-btn smoothscroll me-3">Signup</a>
+                            <a href="#section_2" class="btn custom-btn smoothscroll me-3">Discover More</a>
 
                             <a href="#section_3" class="link link--kale smoothscroll">Chat with the artists</a>
                         </div>
@@ -162,7 +166,7 @@
             <section class="py-lg-5"></section>
 
 
-            <section class="book-section section-padding" id="section_3">
+            <section class="book-section section-padding" id="section_2">
                 <div class="container">
                     <div class="row">
 
@@ -335,12 +339,12 @@
                 <div class="container">
                     <div class="row">
 
-                        <div class="NEWArr">
+                        <div class="col-lg-12 col-12 text-center mb-5">
 
-                            <h2 allign="center">New Arrival</h2>
+                            <h2>New Arrival</h2>
                         </div>
                         {% for productindex in productindex %}  
-                           <div class="NEWArr">
+                           <div class="content">
                              <div class="BOX">
                                  {% if productindex.Picture %}
                                    <div class="pic">
@@ -352,12 +356,10 @@
                               
                             </div>
                           </div> 
-                          <div class="NEWArr">
                           <p> ₹- {{productindex.Price}}</p>
-                        </div>
-
-                          <div class="NEWArr">
-                            <button type="submit" class="butt1">Add to Cart</button>
+                        
+                          <div class="container">
+                            <button type="submit" class="cart">Add to Cart</button>
                           </div>
                         </div>
                         {% endfor %}
@@ -369,7 +371,7 @@
             </section>
 
 
-           <!-- <section class="contact-section section-padding" id="section_5">
+            <section class="contact-section section-padding" id="section_5">
                 <div class="container">
                     <div class="row">
 

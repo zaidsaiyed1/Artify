@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/static/css/Addcustomer.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CUSTOMER PAGE</title>
+</head>
+<body>
+    <form action="../signupuser/" method="post">
+   {% csrf_token %}
+    <div class="all">
+    <h1>Add Customer</h1>
+        CUSTOMER_NAME<br>
+        <input type="text" name="name" id="name"><br><br>
+        CONTACT_NO<br>
+        <input type="number" name="contact" id="contact" maxlength="10"><br><br>
+        USERNAME<br>  
+        <input type="text" name="username" id="username"><br>
+        <br>
+        CUSTOMER_PASS<br>
+        <input type="number" name="password" id="password"><br><br>
+        CUSTOMER_EMAIL<br>
+        <input type="email" name="email" id="email"><br><br>
+        </div>
+        <img src="logoo.jpg" width="1000px" height="730px">
+        <div class="submit">
+         <input type="submit" name="UPDATE" value="UPDATE">
+        </div>
+    </form>
+</body>
+</html>   

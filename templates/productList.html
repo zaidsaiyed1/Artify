@@ -3,116 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/static/css/productList.css">
+    <title>Products</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/productList.css">
 </head>
 <body>
+    <script type="text/javascript" src="/static/js/productlist.js"></script>
     
-</body>
-</html>
-
-<div class="wrapper">
-    <h2>Product List page</h2>
-    
-<!-- first product -->
-    <div class="hand_creme">
-      <div class="title">
-       
-      </div>
-      <div class="content">
-        <input type="radio" name="xxx" class="btn-hide" id="r1" checked="true">
-        <input type="radio" name="xxx" class="btn-hide" id="r2">
-        <input type="radio" name="xxx" class="btn-hide" id="r3">
-        <input type="radio" name="xxx" class="btn-hide" id="r4">
-        <input type="radio" name="xxx" class="btn-hide" id="r5">
-
-        <label class="btn pink" for="r1"></label>
-        <label class="btn orange" for="r2"></label>
-        <label class="btn green" for="r3"></label>
-        <label class="btn blue" for="r4"></label>
-        <label class="btn purple" for="r5"></label>
-
-        <div class="BOX">
-          <div class="pic">
-            <img src="image-1.jpg" alt="">
-            <img src="image-7.jpg" alt="">
-            <img src="image-2.jpg" alt="">
-            <img src="image-4.jpg" alt="">
-            <img src="image-3.jpg"alt="">          </div>
-        </div>
-
-        <li class="names">
-          <div class="pink"></div>
-          <div class="orange"><p>Tarocco Orange</p></div>
-          <div class="green"><p>Avocado Olive</p></div>
-          <div class="blue"><p>La Source</p></div>
-          <div class="purple"><p>Lavender</p></div>
-        </li>
-      </div> 
-      <p> ₹ - 1000 </p>
-      <p> Sree krishna God and nandi cow wall picture art.</p>
-        
-      <div class="cart">
-        <p>Add to Cart</p>
-      </div>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700,800" rel='stylesheet' type='text/css'>
+<div class="tools">
+  <div class="search-area">
+    <input type="text" id="search" placeholder="Search" /> <button id="searchbutton">Go</button>
+  </div>
+  <div class="settings">
+    <button id="view">Switch View</button>
+  </div>
+</div>
+{% for product in product %}  
+<div class="products products-table">
+  <div class="product">
+    <div class="product-img">
+      {% if product.Picture %}
+      <td>
+     <img src="{{product.Picture.url}}" width="50px" height="50px" alt="">
+     </td>
+     {% endif %}
     </div>
-
-<!-- second product -->
-    <div class="bath">
-      <div class="title">
-       
-        
-      </div>
-      <div class="content">
-        <input type="radio" name="xxx1" class="btn-hide1" id="b1" checked="true">
-        <input type="radio" name="xxx1" class="btn-hide1" id="b2">
-
-        <label class="btn1 honey" for="b1"></label>
-        <label class="btn1 lavender" for="b2"></label>
-
-        <div class="BOX2"></div>
-        <img src="image-4.jpg" alt="">
-
-        <li class="names1">
-          <div class="yellow"></div>
-          <div class="violet">
-        </li>
-      </div>
-      <p> ₹ - 800 </p>
-      <p>Two deer set down on floor wall art.</p>
-      <div class="cart">
-        <p>Add to Cart</p>  
-      </div>
-    </div>
-
-<!-- third product -->
-    <div class="perfume">
-      <div class="title">
-       
-        
-      </div>
-      <div class="content">
-        <input type="radio" name="xxx2" class="btn-hide2" id="p1" checked="true">
-
-        <label class="btn2 lily" for="p1"></label>
-
-
-        <div class="BOX3">
-          <img src="image-4.jpg" alt="">
-          
-        </div>
-
-        <li class="names2">
-          <div class="green"></div>
-        </li>
-      </div>
-                <p> ₹ - 500 </p>
-                <p>Two deer set down on floor wall art.</p>
-      <div class="cart">
-
-     <p>Add to cart</p>
-       
-        
-      </div>
+    <div class="product-content">
+      <h3>{{product.Name}}</h3>
+      <h3>{{product.Description}}
+      <p class="product-text price">₹ {{product.Price}}</p>
+      <p class="product-text genre"></p>
     </div>
   </div>
+  
+</div>
+{% endfor %}
+</body>
+</html>

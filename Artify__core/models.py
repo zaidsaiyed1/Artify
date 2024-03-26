@@ -42,6 +42,7 @@ class Customer(models.Model):
    Customer_Email = models.EmailField(null = False)
    Customer_password = models.CharField(max_length=20,null = False)
    
+   
 
 class Meta:
    db_table = 'Customer'

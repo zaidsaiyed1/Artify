@@ -37,7 +37,7 @@
             </li>
             <li>
                <i class="uil uil-calendar-alt"></i>
-               <a href="/products/"><span>Products</span></a>
+               <a href="/productsPageForAdmin/"><span>Products</span></a>
             </li>
             <li>
                <i class="uil uil-shopping-bag"></i>
@@ -45,7 +45,7 @@
             </li>
             <li>
                <i class="uil uil-user-circle"></i>
-               <span>Account</span>
+               <a href="/adminprofile/{{admin.Admin_username}}"><span>Account</span></a>
             </li>
             <li>
                <i class="uil uil-signin"></i>
@@ -61,9 +61,9 @@
             <i class="uil uil-bars" id="menu-icon"></i>
             Dashboard
          </h2>
-         <button><a href="/signup/"class="link"> Add Customer </a></button>
-         <button><a href="/signupforAA/" class="link"> Add Artist </a></button>
-         <button><a href="/signupforAM/" class="link"> Add ArtGalleryManager </a></button>
+         <button><a href="/AddCustomerForAdmin/"class="link"> Add Customer </a></button>
+         <button><a href="/AddArtistForAdmin/" class="link"> Add Artist </a></button>
+         <button><a href="/AddArtgallerymanagerForAdmin/" class="link"> Add ArtGalleryManager </a></button>
         
          <div class="admin-box flex" >
             <img src="/static/img/logo7.jpg" width="30px" height="30px">
@@ -79,7 +79,7 @@
             <div class="single-card">
                <div>
                   <span>EARNINGS (MONTHLY)</span>
-                  <h2>$40,000</h2>
+                  <h2>₹ 4,00,000</h2>
                </div>
                <i class="uil uil-calender"></i>
             </div>
@@ -183,7 +183,7 @@
             <div class="customers">
                <div class="card-header flex">
                   <h3>New Products</h3>
-                  <button>See all <i class="link"></i></button>
+                  <button><a href="/productsPageForAdmin/">See all</a><i class="link"></i></button>
                </div>
 
                <table>

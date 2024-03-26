@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Art Website</title>
+    <link rel="stylesheet" href="/static/css/profile2.css ">
+</head>
+<body>
+    <header>
+        <h1>ARTIFY</h1>
+        <nav>
+            <ul>
+                <li><a href="/indexcustomer/{{customer.Customer_username}}">Home</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="profile-container">
+            <h2>My Profile</h2>
+            <img src="/static/img/logo7.jpg" alt="Profile Picture" class="profile-picture">
+            <p>Name: {{customer.Customer_name}}</p>
+            <p>Username: {{customer.Customer_username}}</p>
+            <p>Email: {{customer.Customer_Email}}</p>
+            <a href="/edit/{{customer.Customer_username}}" class="edit-profile-button">Edit Profile</a>
+            <a href="/destroy/{{customer.Customer_username}}" class="edit-profile-button">Delete</a>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Artify</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/static/css/profile.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Profile - [Your Name]</title>
+   <style>
+    .profile-container {
+    background-color: #fff;
+    border: 3px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+.edit-profile-button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+   
+   
+}
+.edit-profile-button{
+text-decoration: none;
+  }
+.delete-profile-button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+   
+   
+}
+.delete-profile-button{
+text-decoration: none;
+  }
+
+   </style>
+</head>
+<body>
+    <header>
+        <h2>My Profile</h2>
+        </header>
+    <main>
+            <img src="/static/img/logo7.jpg" alt="Profile Picture" class="profile-picture">
+        <h1>{{admin.Admin_username}}</h1>
+        <p class="subtitle">Artist</p>
+        <section class="profile-info">
+            <h2>About Me</h2>
+            <p>{{admin.Admin_name}}</p>
+            <p>{{admin.Admin_email}}</p>
+        </section>
+        <section class="contact">
+            <h2>Contact</h2>
+            <ul>
+            Phone: {{admin.Admin_contact_no}}</a></li>
+                </ul>
+        </section>
+        <a href="/editArtist/{{admin.Admin_usename}}" class="edit-profile-button">Edit Profile</a>
+        &nbsp;
+        <a href="/destroyArtist/{{artist.Artist_username}}" class="delete-profile-button">Delete Profile</a>
+        
+        
+    </main>
+</body>
+</html>
